@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="description"
+    content="This is a simple tip calculator to help users calculate tips easily."/>
+    <title> Tip Calculator </title>
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2838/2838912.png" type="image/x-icon">
+    <style>
+        .out{
+            border: 2px solid lightslategray;
+            background-color: lightslategray;
+            border-radius: 10px;
+            width: 700px;
+            margin: auto;
+        }
+        .in{
+            border: 2px solid white;
+            border-radius: 10px;
+            background-color: white;
+            width: 600px;
+            margin: 20px auto;
+            text-align: center;
+            padding: 20px;
+        }
+        label,input,.p{
+            display:flex;
+            justify-content: left;
+            margin: 5px auto;
+            padding: 0px;
+            text-align: left;
+        }
+        input{
+            padding:5px;
+            width:575px;
+            border: 1px solid grey;
+            border-radius: 5px;
+        }
+        button{
+            padding: 10px 20px;
+            background-color:lightgreen;
+            width: 575px;
+            border-radius: 5px;
+        }
+        .total{
+            display:inline;
+            padding:10px;
+            margin:10px;
+            text-align: left;
+
+        }
+    </style>
+    </head>
+    <body>
+        <div class="out">
+        <div class="in">
+            <h1>Tip Calculator</h1>
+            <p class="p">Enter the bill amount and the tip percentage to calculate the total</p>
+            <label for="billAmount">Bill Amount: </label>
+            <input class="amount" type="number" id="billAmount" placeholder="Enter bill amount"/><br/><br/>
+            <label for="tippercentage">Tip Percentage: </label>
+            <input class="percentage" type="number" id="tipPercentage" placeholder="Enter tip percentage"/><br/><br/>
+            <button class="btn">Calculate</button>
+            <p class="total">Total: </p>
+            <script>
+                const btn = document.querySelector(".btn");
+                btn.addEventListener("click", ()=>{
+                    let amount = parseFloat(document.querySelector(".amount").value);
+                let tip = parseFloat(document.querySelector(".percentage").value);
+                let total = (amount*tip)/100+amount;
+                    document.querySelector(".total").innerHTML = `Total:$${total.toFixed(2)}`;
+                })
+
+            </script>
+        </div>
+        </div>
+    </body>
+</html>
