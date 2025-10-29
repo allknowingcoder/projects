@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="description"
+    content="This is a simple temperature convertor to help users calculate between Celsius, Fahrenheit and Kelvin easily."/>
+    <title> Temperature Convertor </title>
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2838/2838912.png" type="image/x-icon">
+    <style>
+        body{
+            border: 2px solid greenyellow;
+            background: linear-gradient(to left bottom, lightgreen, lightblue);
+            margin:0;
+            height: 100vh; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            font-family: Arial, sans-serif;
+            color: darkcyan;
+            
+        }
+        .in{
+            display:flex;
+            flex-direction: column;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.3);
+            width: 400px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            
+        }
+        label{
+            text-align: left;
+            font-size: larger;
+        }
+        input{
+            float:right;
+            padding:5px;
+            width:40%;
+            border: 1px solid grey;
+        }
+        .container{
+            margin-bottom:15px;
+        }
+        h1{
+            text-align: center;
+            margin-bottom: 30px;
+        }
+       
+    </style>
+    </head>
+    <body>
+        <div class="in">
+            <h1>Temperature Convertor</h1>
+            <div class="container">
+            <label for="celsius">Celsius: </label>
+            <input class="amount" type="number" id="celsius" placeholder="Enter temperature"/><br/><br/>
+            </div>
+            <div class="container">
+            <label for="fahrenheit">Fahrenheit: </label>
+            <input class="amount" type="number" id="fahrenheit" placeholder="Enter temperature"/><br/><br/>
+            </div>
+            <div class="container">
+            <label for="kelvin">Kelvin: </label>
+            <input class="amount" type="number" id="kelvin" placeholder="Enter temperature"/><br/><br/>
+            </div>
+        </div>
+        <script>
+            const celsiusInput = document.getElementById("celsius");
+            const fahrenheitInput = document.getElementById("fahrenheit");
+            const kelvinInput = document.getElementById("kelvin");
+            celsiusInput.addEventListener("change",()=>{
+                let celsius = parseFloat(celsiusInput.value)
+                let fahrenheit = (celsius * 9/5) + 32;
+                let kelvin = celsius + 273.15;
+                fahrenheitInput.value = fahrenheit.toFixed(2);
+                kelvinInput.value = kelvin.toFixed(2);
+                console.log(fahrenheit);
+            })
+            fahrenheitInput.addEventListener("change",()=>{
+                let fahrenheit = parseFloat(fahrenheitInput.value)
+                let celsius = (fahrenheit - 32) * 5/9;
+                let kelvin = celsius + 273.15;
+                celsiusInput.value = celsius.toFixed(2);
+                kelvinInput.value = kelvin.toFixed(2);
+            })
+            kelvinInput.addEventListener("change",()=>{
+                let kelvin = parseFloat(kelvinInput.value)
+                let celsius = kelvin - 273.15;
+                let fahrenheit = (celsius * 9/5) + 32;
+                celsiusInput.value = celsius.toFixed(2);
+                fahrenheitInput.value = fahrenheit.toFixed(2);
+            })
+        </script>
+    </body>
+</html>
