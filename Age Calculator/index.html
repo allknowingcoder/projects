@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator</title>
+    <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+
+    <!-- jQuery and jQuery UI -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            margin: 50px;
+            text-align: center;
+            background: lightgrey;
+        }
+        .container{
+            background: white;
+            padding: 20px 50px;
+            margin: 20px ;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            display: inline-block;
+        }
+        .flex{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        input{
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button{
+            padding: 10px;
+            font-size: 16px;
+            width: 150px;
+            margin:auto;
+            background-color: skyblue;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+    </style>
+    </head>
+<body>
+    <div class="container">
+    <h1>Age Calculator</h1>
+    <p>Enter your birth date to calculate your age:</p>
+    <div class="flex">
+    <input type="date" id="birthdate">
+    <button id="calculateAge">Calculate Age</button>
+    </div>
+    <h2 class="age"></h2>
+    </div>
+    <script>
+        $(function(){
+            $("#calculateAge").datepicker({
+                dateFormat: "dd-mm-yy",
+                changeMonth: true,
+                changeYear: true,
+                showAnim: "fadeIn"
+            });
+        });
+        let btn = document.getElementById("calculateAge");
+        btn.addEventListener("click", function() {
+            let birthdate = document.getElementById("birthdate").value;
+            if (!birthdate) {
+                document.querySelector(".age").innerHTML = "Please enter your birth date.";
+                return;
+            }
+            let birthDate = new Date(birthdate);
+            let today = new Date();
+            let age = today.getFullYear() - birthDate.getFullYear();
+            let monthDiff = today.getMonth() - birthDate.getMonth();
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+            document.querySelector(".age").innerHTML = `You are ${age} years old.`;
+        });
+    </script>
+</body>
+</html>
