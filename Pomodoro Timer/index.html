@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Timer</title>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        #timerDisplay{
+            font-size: 48px;
+            margin: 20px;
+        }
+        button{
+            padding: 10px;
+            font-size: 20px;
+            margin: 5px;
+        }
+        #option button{
+            background-color: skyblue;
+            color: white;
+        }
+        #startButton{
+            background-color: green;
+            color: white;
+        }
+        #resetButton{
+            background-color: orange;
+            color: white;
+        }
+        #stopButton{
+            background-color: red;
+            color: white;
+        }
+        .container{
+            display: inline-block;
+            padding: 20px 50px;
+            border: 2px solid whitesmoke;
+            border-radius: 10px;
+            box-shadow: 0 0 10px grey;
+        }
+    </style>
+    </head>
+<body>
+    <div class="container">
+    <h1>Pomodoro Timer</h1>
+    <div id="option">
+    <button id="twentyFiveMinutes">25 Minutes</button>
+    <button id="fiftyMinutes">50 Minutes</button>
+    </div>
+    <div id="timerDisplay">00:00</div>
+    <button id="startButton">Start</button>
+    <button id="resetButton">Reset</button>
+    <button id="stopButton">Stop</button>
+    </div>
+    <script>
+        const timerDisplay = document.getElementById("timerDisplay");
+        const startButton = document.getElementById("startButton");
+        const resetButton = document.getElementById("resetButton");
+        const stopButton = document.getElementById("stopButton");
+        const twentyFiveMinutes = document.getElementById("twentyFiveMinutes");
+        const fiftyMinutes = document.getElementById("fiftyMinutes");
+        let countdown;
+        let timer;
+        twentyFiveMinutes.addEventListener("click", () => {
+            timerDisplay.textContent = "25:00";
+            timer = 25 * 60;
+        });
+        fiftyMinutes.addEventListener("click", () => {
+            timerDisplay.textContent = "50:00";
+            timer = 50 * 60;
+        });
+        startButton.addEventListener("click", () => {
+            countdown = setInterval(() => {
+                const minutes = Math.floor(timer / 60);
+                const seconds = timer % 60;
+                timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                if (timer <= 0) {
+                    clearInterval(countdown);
+                    alert("Time's up!");
+                }
+                timer--;
+            }, 1000);
+        });
+        resetButton.addEventListener("click", () => {
+            clearInterval(countdown);
+            timerDisplay.textContent = "00:00";
+            timer = 0;
+        });
+        stopButton.addEventListener("click", () => {
+            clearInterval(countdown);
+        });
+    </script>
+</body>
+</html>
