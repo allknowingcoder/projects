@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dice Roll Simulator</title>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-color: #f0f0f0;
+        }
+        .container{
+            background: white;
+            padding: 20px 50px;
+            margin: 20px ;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            display: inline-block;
+        }
+        .dice{
+            font-size: 100px;
+            margin: 20px;
+        }
+        button{
+            padding: 10px;
+            font-size: 20px;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+    </style>
+    </head>
+<body>
+    <div class="container">
+    <h1>Dice Roll Simulator</h1>
+    <div class="dice" id="dice">⚀</div>
+    <button id="rollButton">Roll Dice</button>
+    </div>
+    <div id="content"></div>
+    <script>
+        const dice = document.getElementById("dice");
+        const rollButton = document.getElementById("rollButton");
+        let count = 0;
+        rollButton.addEventListener("click",()=> {
+            count++;
+            const roll = Math.floor(Math.random()*6)+1;
+            const diceFaces = ["⚀","⚁","⚂","⚃","⚄","⚅"];
+            const newRoll = diceFaces[roll-1];
+            dice.textContent = newRoll;
+            document.getElementById("content").innerHTML += ` <p class="result"> Roll ${count}: <span class="r">${newRoll}</span> </p> `;
+            const el = document.querySelector('.result:last-child');
+            const d = el.querySelector('.r:last-child');
+            el.style.display = 'flex';
+            el.style.border = '2px solid gray';
+            el.style.borderRadius = '8px';
+            el.style.padding = '20px';
+            el.style.margin = '10px auto';
+            el.style.width = '200px';
+            el.style.backgroundColor = 'gray';
+            el.style.boxShadow = '2px 2px 12px gray';
+            el.style.fontSize = '20px';
+            el.style.justifyContent = 'space-around';
+            d.style.fontSize = '20px';
+            d.style.marginLeft = '40px';
+        })
+    </script>
+</body>
+</html>
