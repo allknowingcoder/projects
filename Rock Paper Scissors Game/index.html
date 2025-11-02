@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors Game</title>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        #options button{
+            padding: 10px;
+            font-size: 30px;
+            margin: 10px;
+            cursor: pointer;
+        }
+        #result{
+            margin-top: 20px;
+            font-size: 24px;
+        }
+        #message{
+            font-size: 20px;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        .container{
+            display: inline-block;
+            padding: 20px 50px;
+            border: 2px solid whitesmoke;
+            border-radius: 10px;
+            box-shadow: 0 0 10px grey;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+    <h1>Rock Paper Scissors Game</h1>
+    <h2>Choose your move:</h2>
+    <div id="options">
+        <button id="rock">👊</button>
+        <button id="paper">🖐</button>
+        <button id="scissors">✌️</button>
+    </div>
+    <p id="message"></p>
+    <div id="result">
+        <p id="your">Your score: 0</p>
+        <p id="computer">Computer score: 0</p>
+    </div>
+        <p id="message"></p>
+    </div>
+    <script>
+        const rockBtn = document.getElementById("rock");
+        const paperBtn = document.getElementById("paper");
+        const scissorsBtn = document.getElementById("scissors");
+        const yourScoreDisplay = document.getElementById("your");
+        const computerScoreDisplay = document.getElementById("computer");
+        const messageDisplay = document.getElementById("message");
+
+        let yourScore = 0;
+        let computerScore = 0;
+        rockBtn.addEventListener("click",()=>{
+            let computerOption = Math.floor(Math.random()*3)+1;
+            if(computerOption=== 1){
+                messageDisplay.textContent="It's a tie!";
+            }
+            else if(computerOption=== 2){
+                messageDisplay.textContent="You lose! paper beats rock";
+                computerScore++;
+                computerScoreDisplay.textContent=`Computer score:  ${computerScore}`;
+            }
+            else{
+                messageDisplay.textContent="You win! rock beats scissors";
+                yourScore++;
+                yourScoreDisplay.textContent=`Your score: ${yourScore}`;
+            }
+        })
+        scissorsBtn.addEventListener("click",()=>{
+            let computerOption = Math.floor(Math.random()*3)+1;
+            if(computerOption=== 1){
+                messageDisplay.textContent="You lose! rock beats scissors";
+                computerScore++;
+                computerScoreDisplay.textContent=`Computer score:  ${computerScore}`;
+            }
+            else if(computerOption=== 2){
+                messageDisplay.textContent="You win! scissors beats paper";
+                yourScore++;
+                yourScoreDisplay.textContent=`Your score: ${yourScore}`;
+            }
+            else{
+                messageDisplay.textContent="It's a tie!"
+            }
+        })
+        paperBtn.addEventListener("click",()=>{
+            let computerOption = Math.floor(Math.random()*3)+1;
+            if(computerOption=== 1){
+                messageDisplay.textContent="You win! paper beats rock";
+                yourScore++;
+                yourScoreDisplay.textContent=`Your score: ${yourScore}`;
+            }
+            else if(computerOption=== 2){
+                messageDisplay.textContent="It's a tie!"
+            }
+            else{
+            messageDisplay.textContent="You lose! scissors beats paper";
+                computerScore++;
+                computerScoreDisplay.textContent=`Computer score:  ${computerScore}`;
+            }
+        })
+
+    </script>
+</body>
+</html>
